@@ -29,15 +29,13 @@ def main():
 
     # One-hot encode 'region' variable
     onehot_encoder = OneHotEncoder()
-region_encoded = onehot_encoder.fit_transform(data[['region']])
-region_column_names = onehot_encoder.get_feature_names_out(['region'])
-
-# Ensure that the number of columns in region_encoded matches the number of columns in region_column_names
-if region_encoded.shape[1] != len(region_column_names):
-    raise ValueError("Number of columns in one-hot encoded region data does not match the number of columns in region_column_names")
-
-data[region_column_names] = region_encoded
+    region_encoded = onehot_encoder.fit_transform(data[['region']])
     region_column_names = onehot_encoder.get_feature_names_out(['region'])
+
+    # Ensure that the number of columns in region_encoded matches the number of columns in region_column_names
+    if region_encoded.shape[1] != len(region_column_names):
+        raise ValueError("Number of columns in one-hot encoded region data does not match the number of columns in region_column_names")
+
     data[region_column_names] = region_encoded
     data = data.drop(['region'], axis=1)
 
