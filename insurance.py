@@ -18,8 +18,7 @@ def main():
     # Read data
     @st.cache
     def load_data():
-        data = pd.read_csv("insurance.csv")
-        return data
+        return pd.read_csv("insurance.csv")
 
     data = load_data()
 
@@ -29,10 +28,15 @@ def main():
     data['smoker'] = le.fit_transform(data['smoker'])
 
     # One-hot encode 'region' variable
-    onehot_encoder = OneHotEncoder(sparse=False)
+    onehot_encoder = OneHotEncoder()
     region_encoded = onehot_encoder.fit_transform(data[['region']])
     region_column_names = onehot_encoder.get_feature_names_out(['region'])
-    data[region_column_names] = region_encoded
+
+    # Ensure that the number of columns in region_encoded matches the number of columns in region_column_names
+    if region_encoded.shape[1] != len(region_column_names):
+        raise ValueError("Number of columns in one-hot encoded region data does not match the number of columns in region_column_names")
+
+    data[region_column_names] = region_encoded.toarray()  # Convert to dense array
     data = data.drop(['region'], axis=1)
 
     # Split data into features and target
