@@ -29,7 +29,7 @@ def main():
 
     # One-hot encode 'region' variable
     onehot_encoder = OneHotEncoder()
-    region_encoded = onehot_encoder.fit_transform(data[['region']]))
+    region_encoded = onehot_encoder.fit_transform(data[['region']])
     region_column_names = onehot_encoder.get_feature_names_out(['region'])
     data[region_column_names] = region_encoded
     data = data.drop(['region'], axis=1)
