@@ -18,8 +18,7 @@ def main():
     # Read data
     @st.cache
     def load_data():
-        data = pd.read_csv("insurance.csv")
-        return data
+        return pd.read_csv("insurance.csv")
 
     data = load_data()
 
