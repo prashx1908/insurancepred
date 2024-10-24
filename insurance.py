@@ -114,7 +114,7 @@ def main():
     ax.bar(range(X.shape[1]), feature_importances[indices], align="center")
     ax.set_xticks(range(X.shape[1]))
     ax.set_xticklabels(feature_names[indices], rotation=45)
-    ax.set_title("Feature Importances - ANN")
+    ax.set_title("Feature Importances")
     st.pyplot(fig)
 
 
