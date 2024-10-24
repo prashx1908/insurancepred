@@ -12,7 +12,7 @@ import numpy as np
 import streamlit as st
 
 def main():
-    st.title("Insurance Cost Prediction with Artificial Neural Network")
+    st.title("Insurance Cost Prediction with Random Forest")
     st.sidebar.title("Options")
 
     # Read data
